@@ -1,0 +1,48 @@
+<html>
+<head>
+		<script src="paint_tool.js"></script>
+        <link rel="stylesheet" type="text/css" href="paint_tool.css">
+   
+</head>
+<body onload="init()">
+	 <header>
+
+            <h1>ILLUMINATIONS</h1>
+            <span>Bring life to your imagination</span>
+
+     </header>
+     <section>
+     	
+
+            <div id="tool_section">
+
+                <div id="choose_colors">
+                    <h5>Choose Color</h5>
+                    <div class="colors"  id="green" onclick="fillcolor(this)"></div>
+                    <div class="colors"  id="blue" onclick="fillcolor(this)"></div>
+                    <div class="colors"  id="red"  onclick="fillcolor(this)"></div>
+                    <div class="colors"  id="yellow" onclick="fillcolor(this)"></div>
+                    <div class="colors"  id="orange" onclick="fillcolor(this)"></div>
+                    <div class="colors"  id="black" onclick="fillcolor(this)"></div>
+                </div>
+
+                
+                
+            </div>   
+	       <canvas id="canvas" ></canvas>
+	       <div id="right_menu">
+            <input type="button" value="clear" class="clr" size="23" onclick="erase()">
+            <input type="button" value="line" class="clr" size="23" onclick="drawLine()">
+            <input type="button" value="rectangle" class="clr" size="23" onclick="drawRectangle()">
+            <input type="button" value="eraser" class="clr"id="white" size="23"  onclick="fillcolor(this)">
+          
+           </div>
+       </section>
+      <footer>
+
+            <p>copyright 2015- illuminatons.com</p>
+
+        </footer>  	
+
+</body>
+</html>
