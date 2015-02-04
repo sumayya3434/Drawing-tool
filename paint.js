@@ -36,12 +36,12 @@ function printCanvas()
 {  
     var dataimg = canvas.toDataURL(); //attempt to save base64 string to server using this var  
     var windowContent = '<!DOCTYPE html>';
-    windowContent += '<html>'
+    // windowContent += '<html>'
     windowContent += '<head><title>Print canvas</title></head>';
     windowContent += '<body>'
     windowContent += '<img src="' + dataimg + '">';
     windowContent += '</body>';
-    windowContent += '</html>';
+    // windowContent += '</html>';
     var printWin = window.open('','','width=500,height=500');
     printWin.document.open();
     printWin.document.write(windowContent);
