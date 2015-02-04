@@ -32,6 +32,24 @@ function init()
  img.src=localStorage.getItem("canvas");
   
 };
+function printCanvas()  
+{  
+    var dataimg = canvas.toDataURL(); //attempt to save base64 string to server using this var  
+    var windowContent = '<!DOCTYPE html>';
+    windowContent += '<html>'
+    windowContent += '<head><title>Print canvas</title></head>';
+    windowContent += '<body>'
+    windowContent += '<img src="' + dataimg + '">';
+    windowContent += '</body>';
+    windowContent += '</html>';
+    var printWin = window.open('','','width=500,height=500');
+    printWin.document.open();
+    printWin.document.write(windowContent);
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
+    printWin.close();
+}
 
   function down(e)
 {
@@ -40,8 +58,8 @@ function init()
  
    if(paint)
    {	
-	   currentX = e.offsetX || e.clientX - canvas.offsetLeft;
-	   currentY = e.offsetY ||  e.clientY-  canvas.offsetTop;
+	   currentX = e.offsetX==undefined?e.layerX:e.offsetX|| e.clientX - canvas.offsetLeft;
+	   currentY = e.offsetY==undefined?e.layerY:e.offsetY ||  e.clientY-  canvas.offsetTop;
 	   
 	   ctx.beginPath();
 	   ctx.fillStyle = color;
@@ -66,8 +84,8 @@ function move(e)
 		
 		mouseX=currentX;
 		mouseY=currentY;
-		currentX =  e.offsetX || e.clientX - canvas.offsetLeft;
-		currentY =  e.offsetY || e.clientY - canvas.offsetTop;
+		currentX =  e.offsetX==undefined?e.layerX:e.offsetX || e.clientX - canvas.offsetLeft;
+		currentY = e.offsetY==undefined?e.layerY:e.offsetY || e.clientY - canvas.offsetTop;
 		draw();
     }
     
@@ -152,7 +170,7 @@ function drawRectangle()
 
    if (!document.getElementById('imageTemp'))
       document.getElementById('canvas_container').appendChild(canvas2);
-   // };
+  
 
   canvas2.addEventListener("mousedown",rectDown,false);
   canvas2.addEventListener("mousemove",rectMove,false);
@@ -161,16 +179,16 @@ function drawRectangle()
   function rectDown(e)
   {
    started = true;
-  	startX = e.offsetX || e.clientX - canvas2.offsetLeft;
-	  startY = e.offsetY ||e.clientY-  canvas2.offsetTop;
+  	startX = e.offsetX==undefined?e.layerX:e.offsetX || e.clientX - canvas2.offsetLeft;
+	  startY = e.offsetY==undefined?e.layerY:e.offsetY ||e.clientY-  canvas2.offsetTop;
 	
   	
   	
   };
   function rectMove(e){
     if(started){
-   endX = e.offsetX || e.clientX - canvas2.offsetLeft;
-   endY =  e.offsetY || e.clientY-  canvas2.offsetTop;
+   endX = e.offsetX==undefined?e.layerX:e.offsetX || e.clientX - canvas2.offsetLeft;
+   endY =  e.offsetY==undefined?e.layerY:e.offsetY || e.clientY-  canvas2.offsetTop;
   
     width = Math.abs(endX - startX);
     height = Math.abs(endY- startY);
@@ -224,8 +242,6 @@ function drawLine()
 
    if (!document.getElementById('imageTemp'))
       document.getElementById('canvas_container').appendChild(canvas2);
-   // };
-
  
 
   
@@ -236,15 +252,15 @@ function drawLine()
   function lineDown(e)
   {
     started=true;
-  spointX =  e.offsetX ||  e.clientX - canvas.offsetLeft;
-	spointY = e.offsetY ||  e.clientY-  canvas.offsetTop;
+  spointX =  e.offsetX==undefined?e.layerX:e.offsetX||  e.clientX - canvas.offsetLeft;
+	spointY =  e.offsetY==undefined?e.layerY:e.offsetY ||  e.clientY-  canvas.offsetTop;
 	
   	
   }
   function lineMove(e){
    if(started){
-   epointX= e.offsetX ||  e.clientX - canvas.offsetLeft;
-   epointY = e.offsetY ||  e.clientY-  canvas.offsetTop;
+   epointX= e.offsetX==undefined?e.layerX:e.offsetX ||  e.clientX - canvas.offsetLeft;
+   epointY =  e.offsetY==undefined?e.layerY:e.offsetY ||  e.clientY-  canvas.offsetTop;
   
   
    ldraw();
@@ -285,3 +301,4 @@ function drawLine()
 
 
 };
+
