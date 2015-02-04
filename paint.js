@@ -6,7 +6,6 @@ var color="black";
 var z =2 ;
 var ctx,paint,canvas2,ctx2 = false;
 var spointX,spointY,epointX,epointY,w,h;
-window.canvas;
 var started = false;
 
 function init()
@@ -14,6 +13,7 @@ function init()
 	
   canvas = document.getElementById("canvas");
 	ctx = canvas.getContext("2d");
+
 	canvas.width= 500;
 	canvas.height= 500;
 	canvas.style.width='500px';
@@ -50,7 +50,45 @@ function printCanvas()
     printWin.print();
     printWin.close();
 }
+function savepdf()
+{
+      var canvas = document.getElementById('canvas');
+      var ctx = canvas.getContext("2d");
 
+      var imgData = canvas.toDataURL("image/png", 1.0);
+      var pdf = new jsPDF();
+
+      // pdf.addImage(imgData, 'JPEG', 0, 0);
+      pdf.setFontSize(40);
+       pdf.text(35, 25, "canvas drawing");         
+       pdf.addImage(imgData, 'PNG', 15, 40, 180, 180);
+      pdf.save("download.pdf");
+
+
+
+    // html2canvas(  canvas, {
+    //         onrendered: function(canvas) {         
+    //             var imgData = canvas.toDataURL(
+    //                 'image/png');              
+    //             var doc = new jsPDF('p', 'mm');
+    //             doc.addImage(imgData, 'PNG', 10, 10);
+    //             doc.save('sample-file.pdf');
+    //         }
+    //     });
+
+
+
+//        var canvas = document.getElementById("canvas");
+//        var context = canvas.getContext("2d");
+//        var imgData =canvas.toDataURL("image/jpeg,1.0");  
+//        // var pdf = new jsPDF('p','pt','a4');
+//        var doc = new jsPDF();
+
+//         doc.setFontSize(40);
+//         doc.text(35, 25, "Octonyan loves jsPDF");
+//         doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
+
+}
   function down(e)
 {
    

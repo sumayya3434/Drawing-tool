@@ -3,7 +3,15 @@
         
         <link rel="stylesheet" type="text/css" href="paint.css">
         <script src="paint.js"></script>
-
+         <script src="http://parall.ax/parallax/js/jspdf.js"></script>
+        <script src="js/jspdf.js"></script>
+        <script src="js/jspdf.plugin.from_html.js"></script>
+        <script src="js/jspdf.plugin.split_text_to_size.js"></script>
+        <script src="js/jspdf.plugin.standard_fonts_metrics.js"></script>
+        <script src="js/jspdf.plugin.addimage.js"></script>
+        <script src="js/jspdf.plugin.png_support.js"></script>
+        <script src="js/zlib.js"></script>
+        <script src="js/png.js"></script>
 </head>
 <body onload="init()">
      <header>
@@ -39,6 +47,7 @@
             <input type="button" value="rectangle" class="clr" size="23" onclick="drawRectangle()">
             <input type="button" value="eraser" class="clr"id="white" size="23"  onclick="fillcolor(this)">
             <input type="button" value="print" class="clr" size="23"  onclick="printCanvas()">
+             <input type="button" value="save as pdf" class="clr" size="23"  onclick="savepdf()">
            </div>
        </section>
       <footer>
