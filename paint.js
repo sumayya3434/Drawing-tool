@@ -11,37 +11,37 @@ var started = false;
 function init()
 {
 	
-  canvas = document.getElementById("canvas");
-	ctx = canvas.getContext("2d");
+canvas = document.getElementById("canvas");
+ctx = canvas.getContext("2d");
 
-	canvas.width= 500;
-	canvas.height= 500;
-	canvas.style.width='500px';
-	canvas.style.height='500px';
-	w = canvas.width;
-  h = canvas.height;
+canvas.width= 500;
+canvas.height= 500;
+canvas.style.width='500px';
+canvas.style.height='500px';
+w = canvas.width;
+h = canvas.height;
 
-	canvas.addEventListener("mousedown",down ,false);
-  canvas.addEventListener("mousemove",move,false);
-	canvas.addEventListener("mouseup",up,false);
-	canvas.addEventListener("mouseout",out,false);
-  var img=new Image();
-  img.onload=function(){
-  ctx.drawImage(img,0,0);
+canvas.addEventListener("mousedown",down ,false);
+canvas.addEventListener("mousemove",move,false);
+canvas.addEventListener("mouseup",up,false);
+canvas.addEventListener("mouseout",out,false);
+var img=new Image();
+img.onload=function(){
+	ctx.drawImage(img,0,0);
  }
- img.src=localStorage.getItem("canvas");
+img.src=localStorage.getItem("canvas");
   
 };
 function printCanvas()  
 {  
     var dataimg = canvas.toDataURL(); //attempt to save base64 string to server using this var  
     var windowContent = '<!DOCTYPE html>';
-    // windowContent += '<html>'
+ 
     windowContent += '<head><title>Print canvas</title></head>';
     windowContent += '<body>'
     windowContent += '<img src="' + dataimg + '">';
     windowContent += '</body>';
-    // windowContent += '</html>';
+
     var printWin = window.open('','','width=500,height=500');
     printWin.document.open();
     printWin.document.write(windowContent);
@@ -54,42 +54,14 @@ function savepdf()
 {
       var canvas = document.getElementById('canvas');
       var ctx = canvas.getContext("2d");
-
       var imgData = canvas.toDataURL("image/png", 1.0);
       var pdf = new jsPDF();
-
-      // pdf.addImage(imgData, 'JPEG', 0, 0);
       pdf.setFontSize(40);
-       pdf.text(35, 25, "canvas drawing");         
-       pdf.addImage(imgData, 'PNG', 15, 40, 180, 180);
+      pdf.text(35, 25, "canvas drawing");         
+      pdf.addImage(imgData, 'PNG', 15, 40, 180, 180);
       pdf.save("download.pdf");
-
-
-
-    // html2canvas(  canvas, {
-    //         onrendered: function(canvas) {         
-    //             var imgData = canvas.toDataURL(
-    //                 'image/png');              
-    //             var doc = new jsPDF('p', 'mm');
-    //             doc.addImage(imgData, 'PNG', 10, 10);
-    //             doc.save('sample-file.pdf');
-    //         }
-    //     });
-
-
-
-//        var canvas = document.getElementById("canvas");
-//        var context = canvas.getContext("2d");
-//        var imgData =canvas.toDataURL("image/jpeg,1.0");  
-//        // var pdf = new jsPDF('p','pt','a4');
-//        var doc = new jsPDF();
-
-//         doc.setFontSize(40);
-//         doc.text(35, 25, "Octonyan loves jsPDF");
-//         doc.addImage(imgData, 'JPEG', 15, 40, 180, 180);
-
 }
-  function down(e)
+function down(e)
 {
    
    paint=true;
@@ -125,7 +97,7 @@ function move(e)
 		currentX =  e.offsetX==undefined?e.layerX:e.offsetX || e.clientX - canvas.offsetLeft;
 		currentY = e.offsetY==undefined?e.layerY:e.offsetY || e.clientY - canvas.offsetTop;
 		draw();
-    }
+    	}
     
 };
 
@@ -142,8 +114,8 @@ function draw()
 	ctx.lineTo(currentX,currentY);
 	ctx.strokeStyle = color;
 	ctx.lineWidth = z;	
-  ctx.stroke();
-  ctx.closePath(); 
+	ctx.stroke();
+	ctx.closePath(); 
 
 };
 
@@ -191,7 +163,7 @@ function fillcolor(obj)
 function erase()
 {
 	ctx.clearRect(0, 0, w, h);
-  localStorage.removeItem("canvas");
+	localStorage.removeItem("canvas");
 };
 
 
@@ -246,7 +218,7 @@ function drawRectangle()
       canvas2.removeEventListener("mousemove",rectMove,false);
       canvas2.removeEventListener("mouseup",rectUp,false);
 
-   // if (document.getElementById('imageTemp'))
+ 
       document.getElementById('canvas_container').removeChild(document.getElementById('imageTemp'));
    }
   	
@@ -316,7 +288,7 @@ function drawLine()
       canvas2.removeEventListener("mousemove",lineMove,false);
       canvas2.removeEventListener("mouseup",lineUp,false);
 
-   // if (document.getElementById('imageTemp'))
+   
       document.getElementById('canvas_container').removeChild(document.getElementById('imageTemp'));
    }
     
